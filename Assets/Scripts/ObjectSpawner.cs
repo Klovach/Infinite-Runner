@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
-    private int ObjectID = 1;
+ //   private int ObjectID = 1;
     public float maxCoolDown = 1000;
     private float coolDown;
     public GameObject car;
