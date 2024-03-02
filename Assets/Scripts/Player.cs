@@ -66,13 +66,13 @@ public class Player : MonoBehaviour
         // Check if player is grounded and if the player has held down shift key to crouch. Then scale appropriately 
         if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && grounded == true) 
         {
-            bc.size = new Vector2(0.64f, 0.3f);
-            bc.offset = new Vector2(0f, -0.17f);
+            bc.size = new Vector2(0.56f, 0.3f);
+            bc.offset = new Vector2(0.03f, -0.17f);
         }
         else 
         {
-            bc.size = new Vector2(0.64f, 0.64f);
-            bc.offset = new Vector2(0f, 0f);
+            bc.size = new Vector2(0.29f, 0.6f);
+            bc.offset = new Vector2(-0.005f, -0.018f);
         }
 
         print("HP:" + HP);
