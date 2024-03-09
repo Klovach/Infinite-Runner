@@ -17,7 +17,7 @@ public float speed = 1;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         rb.transform.localPosition = new Vector2(rb.position.x-speed,rb.position.y);
 
