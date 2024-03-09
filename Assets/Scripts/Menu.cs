@@ -1,22 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 // Start and Stop Menu 
 public class Menu : MonoBehaviour
 {
-   
-        public void StartGame()
-        {
-            SceneManager.LoadScene("Infinite Runner");
-        }
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
 
-        public void ExitGame()
-        {
-            // Quit the application
-            UnityEditor.EditorApplication.isPlaying = false;
-            Application.Quit();
-        }
-    
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 }

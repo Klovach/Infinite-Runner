@@ -16,10 +16,11 @@ public class Parallax : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bgRenderer.material.mainTextureOffset += new Vector2(speed * Time.deltaTime, 0f);
+        bgRenderer.material.mainTextureOffset += new Vector2(speed * Time.deltaTime, 0f); 
     }
     void IncreaseSpeed()
     {
         speed += 0.1f;
     }
 }
+
