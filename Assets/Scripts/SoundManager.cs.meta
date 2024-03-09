@@ -3,7 +3,13 @@ guid: 54ba1c0a512cbcf4a9c2e92ccf05e241
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - clickSound: {instanceID: 0}
+  - deathSound: {instanceID: 0}
+  - pickupSound: {instanceID: 0}
+  - jumpSound: {instanceID: 0}
+  - scene1Music: {fileID: 8300000, guid: 30b13c1db11937f4a96da02a9ec516b9, type: 3}
+  - scene2Music: {fileID: 8300000, guid: 30b13c1db11937f4a96da02a9ec516b9, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
