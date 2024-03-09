@@ -5,12 +5,15 @@ using UnityEngine;
 public class Parallax : MonoBehaviour
 {
     public float speed;
+
     public Renderer bgRenderer;
 
     void Start()
     {
-        speed = 1f;
-        InvokeRepeating("IncreaseSpeed", 5f, 5f);
+      //  speed = 1f;
+       
+       // InvokeRepeating("IncreaseSpeed", 5f, 5f);
+        
     }
 
     // Update is called once per frame
