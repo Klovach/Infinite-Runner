@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     private BoxCollider2D bc;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
+    private Animator animator;
+    private AnimationState animationState;
     #endregion
 
     #region Public Fields
@@ -35,8 +37,17 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
         sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         jumps = maxJumps;
         HP = maxHP;
+    }
+
+
+    public enum AnimationState
+    {
+        Running,       
+        Jumping,        
+        Crouching 
     }
 
     void Update()
@@ -68,6 +79,8 @@ public class Player : MonoBehaviour
         {
             bc.size = new Vector2(0.56f, 0.3f);
             bc.offset = new Vector2(0.03f, -0.17f);
+            animationState = AnimationState.Crouching; 
+            animator.SetInteger("State", (int)animationState);
         }
         else 
         {
@@ -95,6 +108,8 @@ public class Player : MonoBehaviour
 
     void Jump(float heldLength)
     {
+        animationState = AnimationState.Jumping; 
+        animator.SetInteger("State", (int)animationState);
         if (heldLength >= 0.1) { rb.velocity = Vector2.up * maxJumpForce; }
         else { rb.velocity = Vector2.up * minJumpForce; }
 
