@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
 
         Debug.Log("Current integer state: " + animator.GetInteger("State"));
 
-        print("HP:" + HP);
+        print("HP:" + HP + " Points:" + points);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -124,6 +124,25 @@ public class Player : MonoBehaviour
         { 
             HP--;
             StartCoroutine(HitEffect());
+        }
+        if (collision.gameObject.CompareTag("Collectable"))
+        {
+            string name = collision.gameObject.name;
+            switch (name)
+            {
+                case "coin":
+                    points++;
+                    break;
+                case "pizza":
+                    HP += 5;
+                    break;
+                case "cheese":
+                    HP++;
+                    break;
+                case "rat poison":
+                    HP--;
+                    break;
+            }
         }
     }
 
