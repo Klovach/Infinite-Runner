@@ -42,7 +42,9 @@ public class Player : MonoBehaviour
         HP = maxHP;
     }
 
+   
 
+    // Enum ANimation State: 
     public enum AnimationState
     {
         Running,       
@@ -70,11 +72,13 @@ public class Player : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space))
         {
             float keyHeldDownFinalTime = Time.time - keyHeldDownStartTime;
-            if (jumps >= 1) { Jump(keyHeldDownFinalTime); }
+            if (jumps >= 1) {
+                Jump(keyHeldDownFinalTime);
+            }
             keyPressed = false;
         }
 
-        // Check if player is grounded and if the player has held down shift key to crouch. Then scale appropriately 
+        // Check if player is grounded and if the player has held down shift key to crouch. Then scale appropriately.
         if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && grounded == true) 
         {
             bc.size = new Vector2(0.56f, 0.3f);
@@ -86,15 +90,32 @@ public class Player : MonoBehaviour
         {
             bc.size = new Vector2(0.29f, 0.6f);
             bc.offset = new Vector2(-0.005f, -0.018f);
+            // Only change the state back to Running if the player is grounded.
+            if (grounded) 
+            {
+                // my state is equal to the number of 'running" in my AnimationState enum : is now equal to 0
+                animationState = AnimationState.Running;
+                animator.SetInteger("State", (int)animationState);
+            }
         }
+
+        Debug.Log("Current integer state: " + animator.GetInteger("State"));
 
         print("HP:" + HP);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground") && jumps == 0) { jumps = maxJumps; }
-        if (collision.gameObject.CompareTag("Ground")) { grounded = true; }
+        if (collision.gameObject.CompareTag("Ground") && jumps == 0)
+        {
+            jumps = maxJumps;
+            Debug.Log("Player landed on the ground and resets jumps.");
+        }
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            grounded = true;
+            Debug.Log("Player is grounded.");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -108,10 +129,11 @@ public class Player : MonoBehaviour
 
     void Jump(float heldLength)
     {
-        animationState = AnimationState.Jumping; 
-        animator.SetInteger("State", (int)animationState);
         if (heldLength >= 0.1) { rb.velocity = Vector2.up * maxJumpForce; }
         else { rb.velocity = Vector2.up * minJumpForce; }
+
+        animationState = AnimationState.Jumping; 
+        animator.SetInteger("State", (int)animationState);
 
         grounded = false;
         if (jumps >= 1) { jumps--; } // Safety net to prevent jumps from going below zero
